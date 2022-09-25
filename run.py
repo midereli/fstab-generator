@@ -1,4 +1,3 @@
-import string
 from fstab.helpers import open_yaml, parse_fstab_dict
 import argparse
 

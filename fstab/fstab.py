@@ -1,2 +1,2 @@
 class Fstab:
-  pass
+    pass

@@ -2,6 +2,9 @@ import yaml
 
 
 def open_yaml(yaml_file):
+    """
+    Takes a YAML file as a parameter, opens and loads it as a dictionary and returns the dictionary
+    """
     with open(yaml_file, "r") as f:
         try:
             f.readline()
@@ -14,6 +17,9 @@ def open_yaml(yaml_file):
 
 
 def parse_fstab_dict(fstab_dict):
+    """
+    Takes a dictionary as a paramater, parses and formats content and prints it
+    """
     for key, value in fstab_dict.items():
         device_spec = key
         mount_point = value["mount"]
