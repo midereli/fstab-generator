@@ -6,20 +6,31 @@ fstab-generator converts a YAML file describing the mount points of a system int
 
 ## How to use it?
 
+*Please use Python version greater than 3.6.0.*
+
+### Create and activate virtual environment (not required but recommended)
+
+*If you don't want to create a virtual environment, please jump to [Install requirements](#install-requirements).*
+
 ```sh
-# Create your Python virtual environment (recommended)
+# Create your Python virtual environment
 $ python3 -m venv .venv
 ```
 ```sh
-# Activate your virtual environment
+# Activate your virtual environment (POSIX)
 $ source .venv/bin/activate
 ```
 ```sh
-# Installl requirements
+# Activate your virtual environment (Windows cmd.exe)
+$ .venv\Scripts\activate.bat
+```
+### Install requirements
+```sh
 $ pip install -r requirements.txt
 ```
+### Execution
+#### Execute with `-h` for general information
 ```sh
-# Execute with -h for general information
 $ python run.py -h
 usage: run.py [-h] [-f FILE]
 
@@ -27,19 +38,19 @@ optional arguments:
   -h, --help            show this help message and exit
   -f FILE, --file FILE  name of the yaml file to be parsed
 ```
+#### Execute with no arguments to test with the `mount-points.yaml` file provided in the project
 ```sh
-# Execute without arguments to test with the "mount-points.yaml" file provided in the project
 $ python run.py
 /dev/sda1 /boot xfs defaults 0 0
 /dev/sda2 / ext4 defaults 0 0
 /dev/sdb1 /var/lib/postgresql ext4 defaults 0 0
 192.168.4.5:/var/nfs/home /home nfs noexec,nosuid 0 0
 ```
+#### Execute with `-f` or `--file` to test with any YAML file
 ```sh
-# Execute with "-f" or "--file" to test with any YAML file
-$ python run.py --file ~/my-great-mount-points-file.yaml/dev/sda1 /boot xfs defaults 0 0
+$ python run.py --file ~/my-great-mount-points-file.yaml
+/dev/sda1 /boot xfs defaults 0 0
 /dev/sda2 / ext4 defaults 0 0
 /dev/sdb1 /var/lib/postgresql ext4 defaults 0 0
 192.168.4.5:/var/nfs/home /home nfs noexec 0 0
 ```
-
