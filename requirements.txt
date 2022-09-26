@@ -1,2 +1,1 @@
-pyyaml
-argparse
+PyYAML==6.0

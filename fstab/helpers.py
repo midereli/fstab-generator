@@ -26,7 +26,7 @@ def parse_fstab_dict(fstab_dict):
         fs_type = value["type"]
 
         options = ""
-        if "options" in value:
+        if "options" in value:  # read 'options' values if given in YAML file
             if isinstance(value["options"], list):
                 for option in value["options"]:
                     options += option + ","
@@ -34,21 +34,19 @@ def parse_fstab_dict(fstab_dict):
             else:
                 options = value["options"]
         else:
-            options = "defaults"
+            options = "defaults"  # default 'options' to 'defaults' if not given int YAML file
 
-        dump = ""
+        # default 'dump' to '0' or read value if given in YAML file
+        dump = "0"
         if "dump" in value:
             dump = value["dump"]
-        else:
-            dump = "0"
 
-        fsck = ""
-        if "fsck" in value:
-            fsck = value["fsck"]
-        else:
-            fsck = "0"
+        # default 'pass' to '0' or read value if given in YAML file
+        pass_fsck = "0"
+        if "pass" in value:
+            pass_fsck = value["pass"]
 
         if "export" in value and fs_type == "nfs":
             device_spec += ":" + value["export"]
 
-        print(f"{device_spec} {mount_point} {fs_type} {options} {dump} {fsck}")
+        print(f"{device_spec} {mount_point} {fs_type} {options} {dump} {pass_fsck}")
